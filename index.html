@@ -4,17 +4,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SM Gym</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
 <body>
-    <h1>hello</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-dumbbell me-2"></i>SM<span style="font-size: 0.8em;">GYM</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#timing">Timing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background"></div>
+
+        <!-- Floating Elements -->
+        <div class="floating-element dumbbell-1">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-2">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-3">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            BE <span class="strong-text">STRONG</span> - TRAIN HARD
+                        </h1>
+                        <p class="hero-subtitle">
+                            Achieve your dream physique with our state-of-the-art facilities, expert trainers, and a
+                            motivating community. Your journey to a healthier, stronger you starts here at SM Gym.
+                        </p>
+                        <button class="cta-button-hero" onclick="startTraining()">
+                            Start Training
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Modern equipment</h3>
+                        <p>Elevate your fitness journey with state-of-the-art equipment at our modern gym website.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3>Healthy nutrition plan</h3>
+                        <p>Discover the perfect balance of exercise and nutrition with our tailored healthy eating plans
+                            on our gym website.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Professional training plan</h3>
+                        <p>Achieve your fitness goals under expert guidance with personalized training plans on our
+                            professional gym website.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2 class="about-title">About Us</h2>
+                        <p class="about-text">
+                            At SM Gym, we're more than just a fitness center; we're a community dedicated to helping you
+                            achieve your best self. With cutting-edge equipment, expert trainers, and a motivating
+                            atmosphere, we provide the perfect environment for you to crush your goals. Discover our
+                            philosophy, explore our world-class facility, and learn why SM Gym is the premier choice for
+                            fitness enthusiasts in the region.
+                        </p>
+                        <button class="about-btn" onclick="learnMore()">
+                            Learn More About Us
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <div class="gym-silhouette">
+                            <div class="gym-text-overlay">GYM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="sm-gym-features-showcase">
+        <!-- Background Elements -->
+        <div class="sm-gym-background-typography">GYM</div>
+        <div class="sm-gym-muscle-artwork"></div>
+
+        <!-- Floating Particles -->
+        <div class="sm-gym-floating-particle"></div>
+        <div class="sm-gym-floating-particle"></div>
+        <div class="sm-gym-floating-particle"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="sm-gym-features-wrapper">
+                        <!-- Feature 1 -->
+                        <div class="sm-gym-feature-card">
+                            <div class="sm-gym-feature-icon-box">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Expert Trainers</h3>
+                            <p>Our certified professionals are dedicated to your success and safety.</p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="sm-gym-feature-card">
+                            <div class="sm-gym-feature-icon-box">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>State-of-the-Art Equipment</h3>
+                            <p>Train with the latest and most effective fitness technology.</p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="sm-gym-feature-card">
+                            <div class="sm-gym-feature-icon-box">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Supportive Community</h3>
+                            <p>Join a motivating environment that cheers you on.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Programs Carousel Section -->
+    <section class="programs-carousel-section">
+        <div class="container">
+            <h2 class="section-title">Explore Our Programs</h2>
+        </div>
+        
+        <div class="carousel-container">
+            <button class="carousel-nav prev" onclick="moveCarousel(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Personal Training Card -->
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Personal Training" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Personal Training</h3>
+                        <p class="card-description">
+                            Achieve your specific fitness goals with personalized workout plans and dedicated one-on-one guidance from our certified trainers.
+                        </p>
+                        <ul class="features-list">
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Customized workout routines tailored to your needs
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Nutritional guidance and lifestyle coaching
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Regular progress tracking and adjustments
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Motivation and accountability from expert trainers
+                            </li>
+                        </ul>
+                        <button class="cta-button">Book a Session</button>
+                    </div>
+                </div>
+
+                <!-- Weight Loss Card -->
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Weight Loss" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Weight Loss</h3>
+                        <p class="card-description">
+                            Reach your weight loss goals safely and effectively with science-backed training, nutrition plans, and expert support every step of the way.
+                        </p>
+                        <ul class="features-list">
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Fat-burning workouts designed to maximize results
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Personalized meal plans to support sustainable weight loss
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Regular check-ins to track progress and make adjustments
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Support and motivation to stay consistent and on track
+                            </li>
+                        </ul>
+                        <button class="cta-button">Start Today</button>
+                    </div>
+                </div>
+
+                <!-- Strength Building Card -->
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Strength Building" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Strength Building</h3>
+                        <p class="card-description">
+                            Build lean muscle mass and increase your overall strength with progressive training programs designed for maximum muscle development.
+                        </p>
+                        <ul class="features-list">
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Progressive overload training methodologies
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Advanced compound movement techniques
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Muscle-building nutrition optimization
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Recovery and rest period optimization
+                            </li>
+                        </ul>
+                        <button class="cta-button">Get Stronger</button>
+                    </div>
+                </div>
+
+                <!-- HIIT Training Card -->
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="HIIT Training" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">HIIT Training</h3>
+                        <p class="card-description">
+                            High-intensity interval training that maximizes calorie burn and improves cardiovascular fitness in shorter, more efficient workout sessions.
+                        </p>
+                        <ul class="features-list">
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Time-efficient 30-45 minute sessions
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Maximum calorie burn in minimal time
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Improved cardiovascular endurance
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Metabolic boost lasting hours after workout
+                            </li>
+                        </ul>
+                        <button class="cta-button">Join HIIT</button>
+                    </div>
+                </div>
+
+                <!-- Yoga & Flexibility Card -->
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yoga & Flexibility" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Yoga & Flexibility</h3>
+                        <p class="card-description">
+                            Improve flexibility, balance, and mental well-being through guided yoga sessions and targeted flexibility training for overall wellness.
+                        </p>
+                        <ul class="features-list">
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Stress reduction and mental clarity
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Improved flexibility and mobility
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Better balance and core strength
+                            </li>
+                            <li>
+                                <div class="check-icon">✓</div>
+                                Mindfulness and breathing techniques
+                            </li>
+                        </ul>
+                        <button class="cta-button">Find Balance</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-nav next" onclick="moveCarousel(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="carousel-indicators" id="indicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
 
     <script src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 
 </html>
+
