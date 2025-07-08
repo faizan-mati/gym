@@ -1,0 +1,310 @@
+
+.fitness-container {
+    font-family: 'Inter', sans-serif;
+    background: var(--darker-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.gym-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.schedule-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.subtitle-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.navigation-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.tab-button {
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-family: inherit;
+}
+
+.tab-button.active-tab {
+    background: var(--primary-gradient);
+    border-color: var(--primary-orange);
+    color: var(--text-light);
+    box-shadow: 0 8px 25px var(--glow-orange);
+}
+
+.tab-button:hover:not(.active-tab) {
+    border-color: var(--primary-orange);
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--text-light);
+}
+
+.schedule-content {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: contentFadeIn 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes contentFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timing-section {
+    display: none;
+}
+
+.timing-section.section-active {
+    display: block;
+}
+
+.weekly-schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.daily-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardSlideUp 0.6s ease-out forwards;
+}
+
+.daily-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.daily-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.daily-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.daily-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.daily-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.daily-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.daily-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+@keyframes cardSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.daily-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.daily-card:hover::before {
+    transform: scaleX(1);
+}
+
+.daily-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 107, 53, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.day-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.operational-status {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-open {
+    background: rgba(34, 197, 94, 0.2);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-closed {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.session-times {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time-slot {
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.time-slot:hover {
+    background: rgba(255, 107, 53, 0.15);
+    border-color: var(--primary-orange);
+    transform: scale(1.02);
+}
+
+.session-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.session-time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-orange);
+}
+
+.closed-slot {
+    background: rgba(102, 102, 102, 0.1);
+    border-color: rgba(102, 102, 102, 0.2);
+    opacity: 0.7;
+}
+
+.closed-slot .session-time {
+    color: #888;
+}
+
+.closed-slot:hover {
+    transform: none;
+    background: rgba(102, 102, 102, 0.1);
+    border-color: rgba(102, 102, 102, 0.2);
+}
+
+@media (max-width: 768px) {
+    .gym-wrapper {
+        padding: 0 10px;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .navigation-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .tab-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 12px 30px;
+    }
+
+    .weekly-schedule {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .daily-card {
+        padding: 20px;
+    }
+
+    .day-name {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .tab-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+
+    .daily-card {
+        padding: 18px;
+    }
+
+    .session-times {
+        gap: 12px;
+    }
+
+    .time-slot {
+        padding: 15px;
+    }
+}

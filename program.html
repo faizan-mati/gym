@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SM Gym</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/program.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+
+</head>
+
+<body>
+
+    <!-- ====================================  Navigation ====================================  -->
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fas fa-dumbbell me-2"></i>SM<span style="font-size: 0.8em;">GYM</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./program.html">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ourteam.html">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./timing.html">Timing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./product.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====================================  Hero Section ====================================  -->
+
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <img src="./assets/images/IMG-012.jpg" alt="Hero Background">
+        </div>
+
+        <!-- Particles System -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Floating Elements -->
+        <div class="floating-element dumbbell-1">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-2">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-3">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="strong-text">PROGRAM</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Transform your body and mind with our cutting-edge facilities, expert trainers, and a
+                            supportive community.
+                            Your journey to peak fitness starts here at SM Gym.
+                        </p>
+                        <button class="cta-button-hero" onclick="startTraining()">
+                            <i class="fas fa-play me-2"></i>Start Training
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" onclick="scrollToNext()">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </section>
+
+    <!-- ====================================  Program Section ====================================  -->
+
+    <div class="particles"></div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop"
+                            alt="Personal Training" class="service-image">
+                        <div class="p-4">
+                            <h3 class="service-title">Personal Training</h3>
+                            <p class="service-description">
+                                Get fit faster with our expert personal trainers and customized workout plans and
+                                dedicated one-on-one guidance from our certified trainers.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Customized workout plans tailored to your goals</li>
+                                <li><i class="fas fa-check"></i>Nutritional guidance and lifestyle coaching</li>
+                                <li><i class="fas fa-check"></i>Regular progress tracking and adjustments</li>
+                                <li><i class="fas fa-check"></i>Motivation and accountability from experts</li>
+                            </ul>
+                            <a href="#" class="service-btn">Book a Session</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=400&fit=crop"
+                            alt="Weight Loss" class="service-image">
+                        <div class="p-4">
+                            <h3 class="service-title">Weight Loss</h3>
+                            <p class="service-description">
+                                Transform your body with our effective weight loss programs and training, nutrition
+                                plans, and expert support every step of the way.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Fat burning workouts designed to maximize burn</li>
+                                <li><i class="fas fa-check"></i>Personalized meal plans for sustainable loss</li>
+                                <li><i class="fas fa-check"></i>Body composition tracking and monitoring</li>
+                                <li><i class="fas fa-check"></i>Support and motivation to stay on track</li>
+                            </ul>
+                            <a href="#" class="service-btn">Start a Session</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=400&fit=crop"
+                            alt="Body Building" class="service-image">
+                        <div class="p-4">
+                            <h3 class="service-title">Body Building</h3>
+                            <p class="service-description">
+                                Build serious muscle, increase strength, and sculpt your physique with our comprehensive
+                                training using the elite principles of bodybuilding.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Targeted strength training for your goals</li>
+                                <li><i class="fas fa-check"></i>Advanced techniques for muscle growth</li>
+                                <li><i class="fas fa-check"></i>Nutrition plans for muscle gain and recovery</li>
+                                <li><i class="fas fa-check"></i>Competition prep and posing training</li>
+                            </ul>
+                            <a href="#" class="service-btn">Book a Session</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop"
+                            alt="Yoga" class="service-image">
+                        <div class="p-4">
+                            <h3 class="service-title">Yoga</h3>
+                            <p class="service-description">
+                                Enhance your flexibility, balance, and mental clarity through personalized yoga sessions
+                                designed for every level of experience.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Customized yoga routines for your needs</li>
+                                <li><i class="fas fa-check"></i>Stress relief and mindfulness techniques</li>
+                                <li><i class="fas fa-check"></i>Improve strength, flexibility, and posture</li>
+                                <li><i class="fas fa-check"></i>Breathwork and meditation instruction</li>
+                            </ul>
+                            <a href="#" class="service-btn">Find a Class</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== Footer Section 1 =================================== -->
+
+    <section class="smgym-hero-section" id="home">
+        <div class="smgym-hero-bg-animation"></div>
+        <div class="smgym-hero-container">
+            <h1 class="smgym-hero-title">Ready to Transform?</h1>
+            <p class="smgym-hero-subtitle">
+                Join the SM Gym family today and take the first step<br>
+                towards a stronger, healthier you. Visit us or get in touch<br>
+                to start your journey.
+            </p>
+            <a href="#contact" class="smgym-hero-button">Visit Us Today</a>
+        </div>
+    </section>
+
+    <!-- ==================================== Footer Section 2 =================================== -->
+
+      <footer class="smgym-footer-section">
+        <div class="smgym-footer-container">
+            <div class="smgym-footer-brand">
+                <div class="smgym-footer-logo">
+                    <i class="fas fa-dumbbell"></i>
+                    SM<span style="font-size: 0.8em;">GYM</span>
+                </div>
+                <p class="smgym-footer-description">
+                    SM Gym is dedicated to helping you achieve your fitness goals with top-notch facilities, expert
+                    trainers, and a supportive community. Start strong. Train hard.
+                </p>
+
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Useful Links</h3>
+                <div class="smgym-footer-links">
+                    <li><a href="#home" class="smgym-footer-link">Home</a></li>
+                    <li><a href="#about" class="smgym-footer-link">About Us</a></li>
+                    <li><a href="#programs" class="smgym-footer-link">Programs</a></li>
+                    <li><a href="#training" class="smgym-footer-link">Training</a></li>
+                    <li><a href="#gallery" class="smgym-footer-link">Gallery</a></li>
+                    <li><a href="#team" class="smgym-footer-link">Our Team</a></li>
+                </div>
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Get In Touch</h3>
+                <div class="smgym-contact-info">
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>House 23/ 1 Area 1/d Landhi No 1</span>
+                    </li>
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+92 321 2937239</span>
+                    </li>
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@smgym.pk</span>
+                    </li>
+                </div>
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Follow Us</h3>
+                <div class="smgym-social-links">
+                    <a href="#" class="smgym-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="smgym-map-placeholder mt-4">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4493.6524330627635!2d67.1520654!3d24.8184728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33b21d8c58e7d%3A0x491a0c254a1b4557!2sSM%20GYM%20(Korangi%20No.%203)!5e1!3m2!1sen!2s!4v1751441168389!5m2!1sen!2s"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="smgym-footer-bottom">
+            <p>&copy; 2025 SM Gym. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="./assets/js/program.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SM Gym</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/quote.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+
+</head>
+
+<body>
+
+    <!-- ====================================  Navigation ====================================  -->
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fas fa-dumbbell me-2"></i>SM<span style="font-size: 0.8em;">GYM</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./program.html">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ourteam.html">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./timing.html">Timing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./product.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====================================  Hero Section ====================================  -->
+
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <img src="./assets/images/IMG-012.jpg" alt="Hero Background">
+        </div>
+
+        <!-- Particles System -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Floating Elements -->
+        <div class="floating-element dumbbell-1">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-2">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <div class="floating-element dumbbell-3">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="strong-text">GET</span> QUOTE
+                        </h1>
+                        <p class="hero-subtitle">
+                            Transform your body and mind with our cutting-edge facilities, expert trainers, and a
+                            supportive community.
+                            Your journey to peak fitness starts here at SM Gym.
+                        </p>
+                        <button class="cta-button-hero" onclick="startTraining()">
+                            <i class="fas fa-play me-2"></i>Start Training
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" onclick="scrollToNext()">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </section>
+
+    <!-- ====================================  Quote Section ====================================  -->
+
+    <section class="quote-section">
+        <div class="quote-container">
+            <div class="quote-card">
+                <div class="row g-0">
+                    <!-- Left Side - Mission, Vision, Values & Reviews -->
+                    <div class="col-lg-5">
+                        <div class="quote-left">
+                            <div class="mission-vision-values">
+                                <div class="mvv-item">
+                                    <div class="mvv-icon">
+                                        <i class="fas fa-bullseye"></i>
+                                    </div>
+                                    <h3 class="mvv-title">Our Mission</h3>
+                                    <p class="mvv-text">
+                                        To provide world-class fitness equipment and supplements that empower
+                                        individuals to achieve their health and fitness goals with confidence and
+                                        excellence.
+                                    </p>
+                                </div>
+
+                                <div class="mvv-item">
+                                    <div class="mvv-icon">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <h3 class="mvv-title">Our Vision</h3>
+                                    <p class="mvv-text">
+                                        To become the leading fitness equipment provider in the region, transforming
+                                        lives through quality products, innovative solutions, and exceptional service.
+                                    </p>
+                                </div>
+
+                                <!-- <div class="mvv-item">
+                                    <div class="mvv-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h3 class="mvv-title">Our Values</h3>
+                                    <p class="mvv-text">
+                                        Quality, integrity, and customer satisfaction are at the core of everything we do. We believe in building lasting relationships and delivering excellence.
+                                    </p>
+                                </div> -->
+                            </div>
+
+                            <div class="reviews-section">
+                                <div class="review-card">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="review-text">
+                                        "SM Gym provided excellent equipment for our home gym. The quality is
+                                        outstanding and the service was professional. Highly recommended!"
+                                    </p>
+                                    <p class="review-author">— Ahmed Hassan, Fitness Enthusiast</p>
+                                </div>
+
+                                <div class="review-card">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="review-text">
+                                        "Great products at competitive prices. The team helped me choose the right
+                                        equipment for my fitness goals. Amazing experience!"
+                                    </p>
+                                    <p class="review-author">— Sarah Ali, Personal Trainer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Quote Form -->
+                    <div class="col-lg-7">
+                        <div class="quote-right">
+                            <div class="form-section">
+                                <h2 class="form-title">Get Your Quote</h2>
+                                <p class="form-subtitle">Tell us about your fitness equipment needs and we'll provide a
+                                    customized quote tailored to your requirements</p>
+
+                                <form id="quoteForm">
+                                    <div class="form-group">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="fullName"
+                                            placeholder="Enter your full name" required>
+                                        <div class="form-validation" id="nameValidation"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email"
+                                            placeholder="Enter your email address" required>
+                                        <div class="form-validation" id="emailValidation"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone"
+                                            placeholder="Enter your phone number" required>
+                                        <div class="form-validation" id="phoneValidation"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Select Product</label>
+                                        <div class="custom-dropdown">
+                                            <div class="dropdown-selected placeholder" id="productDropdown">
+                                                <span>Choose a product...</span>
+                                                <i class="fas fa-chevron-down dropdown-arrow"></i>
+                                            </div>
+                                            <div class="dropdown-options" id="productOptions">
+                                                <div class="dropdown-option" data-value="treadmill" data-price="150000">
+                                                    <span class="option-name">Premium Treadmill</span>
+                                                    <span class="option-price">PKR 150,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="elliptical"
+                                                    data-price="120000">
+                                                    <span class="option-name">Elliptical Machine</span>
+                                                    <span class="option-price">PKR 120,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="dumbbells" data-price="25000">
+                                                    <span class="option-name">Dumbbell Set</span>
+                                                    <span class="option-price">PKR 25,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="bench" data-price="45000">
+                                                    <span class="option-name">Adjustable Bench</span>
+                                                    <span class="option-price">PKR 45,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="squat-rack" data-price="85000">
+                                                    <span class="option-name">Power Squat Rack</span>
+                                                    <span class="option-price">PKR 85,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="rowing-machine"
+                                                    data-price="95000">
+                                                    <span class="option-name">Rowing Machine</span>
+                                                    <span class="option-price">PKR 95,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="multi-gym" data-price="200000">
+                                                    <span class="option-name">Multi-Station Gym</span>
+                                                    <span class="option-price">PKR 200,000</span>
+                                                </div>
+                                                <div class="dropdown-option" data-value="spin-bike" data-price="65000">
+                                                    <span class="option-name">Spin Bike</span>
+                                                    <span class="option-price">PKR 65,000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-validation" id="productValidation"></div>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="form-group">
+                                            <label class="form-label">Quantity</label>
+                                            <div class="quantity-dropdown">
+                                                <div class="quantity-selected" id="quantityDropdown">
+                                                    <span>1</span>
+                                                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                                                </div>
+                                                <div class="quantity-options" id="quantityOptions">
+                                                    <div class="quantity-option selected" data-value="1">1</div>
+                                                    <div class="quantity-option" data-value="2">2</div>
+                                                    <div class="quantity-option" data-value="3">3</div>
+                                                    <div class="quantity-option" data-value="4">4</div>
+                                                    <div class="quantity-option" data-value="5">5</div>
+                                                    <div class="quantity-option" data-value="6">6</div>
+                                                    <div class="quantity-option" data-value="7">7</div>
+                                                    <div class="quantity-option" data-value="8">8</div>
+                                                    <div class="quantity-option" data-value="9">9</div>
+                                                    <div class="quantity-option" data-value="10">10+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Total Price</label>
+                                            <div class="price-display" id="totalPrice">
+                                                <i class="fas fa-calculator" style="margin-right: 8px;"></i>
+                                                Select a product
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Additional Requirements</label>
+                                        <textarea class="form-control" id="requirements" rows="4"
+                                            placeholder="Tell us about any specific requirements, installation needs, or questions you have..."></textarea>
+                                    </div>
+
+                                    <button type="submit" class="submit-btn" id="submitBtn">
+                                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                                        Request Quote
+                                    </button>
+
+                                    <div class="success-message" id="successMessage">
+                                        <i class="fas fa-check-circle"
+                                            style="margin-right: 8px; font-size: 1.2rem;"></i>
+                                        Thank you! Your quote request has been submitted successfully. We'll get back to
+                                        you within 24 hours.
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== Footer Section 1 =================================== -->
+
+    <section class="smgym-hero-section" id="home">
+        <div class="smgym-hero-bg-animation"></div>
+        <div class="smgym-hero-container">
+            <h1 class="smgym-hero-title">Ready to Transform?</h1>
+            <p class="smgym-hero-subtitle">
+                Join the SM Gym family today and take the first step<br>
+                towards a stronger, healthier you. Visit us or get in touch<br>
+                to start your journey.
+            </p>
+            <a href="#contact" class="smgym-hero-button">Visit Us Today</a>
+        </div>
+    </section>
+
+    <!-- ==================================== Footer Section 2 =================================== -->
+
+      <footer class="smgym-footer-section">
+        <div class="smgym-footer-container">
+            <div class="smgym-footer-brand">
+                <div class="smgym-footer-logo">
+                    <i class="fas fa-dumbbell"></i>
+                    SM<span style="font-size: 0.8em;">GYM</span>
+                </div>
+                <p class="smgym-footer-description">
+                    SM Gym is dedicated to helping you achieve your fitness goals with top-notch facilities, expert
+                    trainers, and a supportive community. Start strong. Train hard.
+                </p>
+
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Useful Links</h3>
+                <div class="smgym-footer-links">
+                    <li><a href="#home" class="smgym-footer-link">Home</a></li>
+                    <li><a href="#about" class="smgym-footer-link">About Us</a></li>
+                    <li><a href="#programs" class="smgym-footer-link">Programs</a></li>
+                    <li><a href="#training" class="smgym-footer-link">Training</a></li>
+                    <li><a href="#gallery" class="smgym-footer-link">Gallery</a></li>
+                    <li><a href="#team" class="smgym-footer-link">Our Team</a></li>
+                </div>
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Get In Touch</h3>
+                <div class="smgym-contact-info">
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>House 23/ 1 Area 1/d Landhi No 1</span>
+                    </li>
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+92 321 2937239</span>
+                    </li>
+                    <li class="smgym-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@smgym.pk</span>
+                    </li>
+                </div>
+            </div>
+
+            <div class="smgym-footer-column">
+                <h3 class="smgym-footer-title">Follow Us</h3>
+                <div class="smgym-social-links">
+                    <a href="#" class="smgym-social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="smgym-social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="smgym-map-placeholder mt-4">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4493.6524330627635!2d67.1520654!3d24.8184728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33b21d8c58e7d%3A0x491a0c254a1b4557!2sSM%20GYM%20(Korangi%20No.%203)!5e1!3m2!1sen!2s!4v1751441168389!5m2!1sen!2s"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="smgym-footer-bottom">
+            <p>&copy; 2025 SM Gym. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="./assets/js/quote.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

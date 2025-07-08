@@ -448,35 +448,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function switchSchedule(section) {
-    // Update tab buttons
-    const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach(btn => btn.classList.remove('active-tab'));
-
-    // Update sections
-    const sections = document.querySelectorAll('.timing-section');
-    sections.forEach(sec => sec.classList.remove('section-active'));
-
-    // Activate selected tab and section
-    if (section === 'gents') {
-        tabButtons[0].classList.add('active-tab');
-        document.getElementById('gents-schedule').classList.add('section-active');
-    } else {
-        tabButtons[1].classList.add('active-tab');
-        document.getElementById('ladies-schedule').classList.add('section-active');
-    }
-
-    // Reset animations for cards
-    const cards = document.querySelectorAll('.daily-card');
-    cards.forEach((card, index) => {
-        card.style.animation = 'none';
-        setTimeout(() => {
-            card.style.animation = `cardSlideUp 0.6s ease-out ${(index + 1) * 0.1}s forwards`;
-        }, 50);
-    });
-}
-
-
 
 
 
@@ -628,261 +599,369 @@ document.head.appendChild(rippleStyles);
 
 
 
-    class TCTestimonialCarousel {
-            constructor() {
-                this.currentSlide = 0;
-                this.totalSlides = 3;
-                this.autoPlayInterval = 5000;
-                this.autoPlayTimer = null;
-                this.progressTimer = null;
-                
-                this.track = document.getElementById('tcCarouselTrack');
-                this.navDots = document.querySelectorAll('.tc-nav-dot');
-                this.prevBtn = document.getElementById('tcPrevBtn');
-                this.nextBtn = document.getElementById('tcNextBtn');
-                this.progressBar = document.getElementById('tcProgressBar');
-                this.cards = document.querySelectorAll('.tc-testimonial-card');
-                
-                this.init();
-            }
-            
-            init() {
-                this.setupEventListeners();
-                this.startAutoPlay();
-                this.startProgressBar();
-            }
-            
-            setupEventListeners() {
-                this.prevBtn.addEventListener('click', () => this.prevSlide());
-                this.nextBtn.addEventListener('click', () => this.nextSlide());
-                
-                this.navDots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => this.goToSlide(index));
-                });
-                
-                // Pause on hover
-                const section = document.querySelector('.tc-testimonial-section');
-                section.addEventListener('mouseenter', () => this.pauseAutoPlay());
-                section.addEventListener('mouseleave', () => this.resumeAutoPlay());
-                
-                // Touch/swipe support
-                let startX = 0;
-                let currentX = 0;
-                let isDragging = false;
-                
-                this.track.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                    this.pauseAutoPlay();
-                });
-                
-                this.track.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    currentX = e.touches[0].clientX;
-                });
-                
-                this.track.addEventListener('touchend', () => {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    
-                    const diff = startX - currentX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) {
-                            this.nextSlide();
-                        } else {
-                            this.prevSlide();
-                        }
-                    }
-                    
-                    this.resumeAutoPlay();
-                });
-            }
-            
-            goToSlide(slideIndex) {
-                this.currentSlide = slideIndex;
-                this.updateCarousel();
-                this.resetAutoPlay();
-            }
-            
-            nextSlide() {
-                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                this.updateCarousel();
-                this.resetAutoPlay();
-            }
-            
-            prevSlide() {
-                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                this.updateCarousel();
-                this.resetAutoPlay();
-            }
-            
-            updateCarousel() {
-                const translateX = -this.currentSlide * 100;
-                this.track.style.transform = `translateX(${translateX}%)`;
-                
-                // Update nav dots
-                this.navDots.forEach((dot, index) => {
-                    dot.classList.toggle('tc-active', index === this.currentSlide);
-                });
-                
-                // Update active card
-                this.cards.forEach((card, index) => {
-                    card.classList.toggle('tc-active', index === this.currentSlide);
-                });
-                
-                // Reset progress bar
-                this.resetProgressBar();
-            }
-            
-            startAutoPlay() {
-                this.autoPlayTimer = setInterval(() => {
+class TCTestimonialCarousel {
+    constructor() {
+        this.currentSlide = 0;
+        this.totalSlides = 3;
+        this.autoPlayInterval = 5000;
+        this.autoPlayTimer = null;
+        this.progressTimer = null;
+
+        this.track = document.getElementById('tcCarouselTrack');
+        this.navDots = document.querySelectorAll('.tc-nav-dot');
+        this.prevBtn = document.getElementById('tcPrevBtn');
+        this.nextBtn = document.getElementById('tcNextBtn');
+        this.progressBar = document.getElementById('tcProgressBar');
+        this.cards = document.querySelectorAll('.tc-testimonial-card');
+
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.startAutoPlay();
+        this.startProgressBar();
+    }
+
+    setupEventListeners() {
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+        this.navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Pause on hover
+        const section = document.querySelector('.tc-testimonial-section');
+        section.addEventListener('mouseenter', () => this.pauseAutoPlay());
+        section.addEventListener('mouseleave', () => this.resumeAutoPlay());
+
+        // Touch/swipe support
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        this.track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            this.pauseAutoPlay();
+        });
+
+        this.track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        });
+
+        this.track.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const diff = startX - currentX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
                     this.nextSlide();
-                }, this.autoPlayInterval);
-            }
-            
-            pauseAutoPlay() {
-                if (this.autoPlayTimer) {
-                    clearInterval(this.autoPlayTimer);
-                    this.autoPlayTimer = null;
-                }
-                this.pauseProgressBar();
-            }
-            
-            resumeAutoPlay() {
-                if (!this.autoPlayTimer) {
-                    this.startAutoPlay();
-                    this.startProgressBar();
-                }
-            }
-            
-            resetAutoPlay() {
-                this.pauseAutoPlay();
-                this.resumeAutoPlay();
-            }
-            
-            startProgressBar() {
-                let progress = 0;
-                const increment = 100 / (this.autoPlayInterval / 50);
-                
-                this.progressTimer = setInterval(() => {
-                    progress += increment;
-                    this.progressBar.style.width = `${Math.min(progress, 100)}%`;
-                    
-                    if (progress >= 100) {
-                        progress = 0;
-                    }
-                }, 50);
-            }
-            
-            pauseProgressBar() {
-                if (this.progressTimer) {
-                    clearInterval(this.progressTimer);
-                    this.progressTimer = null;
-                }
-            }
-            
-            resetProgressBar() {
-                this.progressBar.style.width = '0%';
-                this.pauseProgressBar();
-                this.startProgressBar();
-            }
-        }
-        
-        // Initialize carousel when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new TCTestimonialCarousel();
-        });
-        
-        // Add some dynamic particle generation
-        function tcCreateFloatingParticles() {
-            const container = document.querySelector('.tc-floating-particles');
-            
-            setInterval(() => {
-                if (container.children.length < 10) {
-                    const particle = document.createElement('div');
-                    particle.className = 'tc-particle';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 6 + 's';
-                    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                    
-                    container.appendChild(particle);
-                    
-                    // Remove particle after animation
-                    setTimeout(() => {
-                        if (container.contains(particle)) {
-                            container.removeChild(particle);
-                        }
-                    }, 8000);
-                }
-            }, 2000);
-        }
-        
-        // Start particle generation
-        tcCreateFloatingParticles();
-
-
-
-
-
-
-            // Smooth scrolling for navigation links
-        document.querySelectorAll('.smgym-nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#contact') {
-                    document.querySelector('.smgym-footer-section').scrollIntoView({
-                        behavior: 'smooth'
-                    });
                 } else {
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
+                    this.prevSlide();
                 }
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('smgymNavbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
             }
+
+            this.resumeAutoPlay();
+        });
+    }
+
+    goToSlide(slideIndex) {
+        this.currentSlide = slideIndex;
+        this.updateCarousel();
+        this.resetAutoPlay();
+    }
+
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateCarousel();
+        this.resetAutoPlay();
+    }
+
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateCarousel();
+        this.resetAutoPlay();
+    }
+
+    updateCarousel() {
+        const translateX = -this.currentSlide * 100;
+        this.track.style.transform = `translateX(${translateX}%)`;
+
+        // Update nav dots
+        this.navDots.forEach((dot, index) => {
+            dot.classList.toggle('tc-active', index === this.currentSlide);
         });
 
-        // Hero button smooth scroll
-        document.querySelector('.smgym-hero-button').addEventListener('click', function(e) {
-            e.preventDefault();
+        // Update active card
+        this.cards.forEach((card, index) => {
+            card.classList.toggle('tc-active', index === this.currentSlide);
+        });
+
+        // Reset progress bar
+        this.resetProgressBar();
+    }
+
+    startAutoPlay() {
+        this.autoPlayTimer = setInterval(() => {
+            this.nextSlide();
+        }, this.autoPlayInterval);
+    }
+
+    pauseAutoPlay() {
+        if (this.autoPlayTimer) {
+            clearInterval(this.autoPlayTimer);
+            this.autoPlayTimer = null;
+        }
+        this.pauseProgressBar();
+    }
+
+    resumeAutoPlay() {
+        if (!this.autoPlayTimer) {
+            this.startAutoPlay();
+            this.startProgressBar();
+        }
+    }
+
+    resetAutoPlay() {
+        this.pauseAutoPlay();
+        this.resumeAutoPlay();
+    }
+
+    startProgressBar() {
+        let progress = 0;
+        const increment = 100 / (this.autoPlayInterval / 50);
+
+        this.progressTimer = setInterval(() => {
+            progress += increment;
+            this.progressBar.style.width = `${Math.min(progress, 100)}%`;
+
+            if (progress >= 100) {
+                progress = 0;
+            }
+        }, 50);
+    }
+
+    pauseProgressBar() {
+        if (this.progressTimer) {
+            clearInterval(this.progressTimer);
+            this.progressTimer = null;
+        }
+    }
+
+    resetProgressBar() {
+        this.progressBar.style.width = '0%';
+        this.pauseProgressBar();
+        this.startProgressBar();
+    }
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new TCTestimonialCarousel();
+});
+
+// Add some dynamic particle generation
+function tcCreateFloatingParticles() {
+    const container = document.querySelector('.tc-floating-particles');
+
+    setInterval(() => {
+        if (container.children.length < 10) {
+            const particle = document.createElement('div');
+            particle.className = 'tc-particle';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+
+            container.appendChild(particle);
+
+            // Remove particle after animation
+            setTimeout(() => {
+                if (container.contains(particle)) {
+                    container.removeChild(particle);
+                }
+            }, 8000);
+        }
+    }, 2000);
+}
+
+// Start particle generation
+tcCreateFloatingParticles();
+
+
+
+
+
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('.smgym-nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#contact') {
             document.querySelector('.smgym-footer-section').scrollIntoView({
                 behavior: 'smooth'
             });
+        } else {
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', function () {
+    const navbar = document.getElementById('smgymNavbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Hero button smooth scroll
+document.querySelector('.smgym-hero-button').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector('.smgym-footer-section').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
+// Animate elements on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe footer columns
+document.querySelectorAll('.smgym-footer-column').forEach(column => {
+    column.style.opacity = '0';
+    column.style.transform = 'translateY(30px)';
+    column.style.transition = 'all 0.6s ease';
+    observer.observe(column);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// ==================================== NAVBAR HERO ==================================== 
+
+
+// Start training function
+function startTraining() {
+    // Add click animation
+    const button = document.querySelector('.cta-button-hero');
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = '';
+    }, 150);
+
+    // You can add your training logic here
+    alert('Welcome to SM Gym! Your fitness journey begins now! 💪');
+}
+
+// Active nav link highlighting
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
         });
+    });
+});
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+// Intersection Observer for animations
+const observerOptions1 = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+const observer1 = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
 
-        // Observe footer columns
-        document.querySelectorAll('.smgym-footer-column').forEach(column => {
-            column.style.opacity = '0';
-            column.style.transform = 'translateY(30px)';
-            column.style.transition = 'all 0.6s ease';
-            observer.observe(column);
-        });
+// Observe elements for scroll animations
+document.querySelectorAll('.floating-element').forEach(el => {
+    observer.observe(el);
+});
+
+
+
+// ==================================== FEACTURE AND ABOUT  ==================================== 
+
+function learnMore() {
+    alert('Learn more functionality would be implemented here!');
+}
+
+// Intersection Observer for scroll animations
+const observerOptions2 = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer2 = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+        }
+    });
+}, observerOptions);
+
+// Observe all animated elements
+document.querySelectorAll('.feature-card, .about-content, .about-image').forEach(el => {
+    observer.observe(el);
+});
+
+// Enhanced hover effects
+document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-20px) scale(1.05)';
+    });
+
+    card.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Parallax effect for floating elements
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelectorAll('.floating-element');
+
+    parallax.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.1);
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
