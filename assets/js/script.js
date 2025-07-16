@@ -451,517 +451,104 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+let currentSlide = 0;
+const totalSlides = 4;
+const track = document.getElementById('carouselTrack');
+const indicators = document.querySelectorAll('.indicator');
 
-// Enhanced interactions and animations
-document.addEventListener('DOMContentLoaded', function () {
-    // Smooth parallax effect on scroll
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const shapes = document.querySelectorAll('.shape');
-        const bg = document.querySelector('.animated-bg');
+function updateCarousel() {
+    const translateX = -currentSlide * 100;
+    track.style.transform = `translateX(${translateX}%)`;
 
-        shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.1;
-            shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-        });
-
-        bg.style.transform = `translateY(${scrolled * 0.05}px)`;
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
     });
+}
 
-    // Interactive card tilt effect
-    const cards = document.querySelectorAll('.visual-card, .feature-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
+function changeSlide(direction) {
+    currentSlide += direction;
 
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-        });
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-        });
-    });
+    updateCarousel();
+}
 
-    // Button ripple effect
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
+function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateCarousel();
+}
 
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
+// Auto-play functionality
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
 
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.classList.add('ripple-effect');
-
-            this.appendChild(ripple);
-
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-
-    // Counter animation for stats
-    const animateCounters = () => {
-        const counters = document.querySelectorAll('.stat-number');
-        counters.forEach(counter => {
-            const target = counter.textContent;
-            const isPercentage = target.includes('%');
-            const isTime = target.includes('/');
-            const isNumber = target.includes('K+');
-
-            let endValue = parseInt(target);
-            if (isNumber) endValue = 5;
-            if (isPercentage) endValue = 98;
-            if (isTime) endValue = 24;
-
-            let current = 0;
-            const increment = endValue / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= endValue) {
-                    current = endValue;
-                    clearInterval(timer);
-                }
-
-                if (isNumber) {
-                    counter.textContent = Math.floor(current) + 'K+';
-                } else if (isPercentage) {
-                    counter.textContent = Math.floor(current) + '%';
-                } else if (isTime) {
-                    counter.textContent = Math.floor(current) + '/7';
-                }
-            }, 50);
-        });
-    };
-
-    // Start counter animation when stats are visible
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    });
-
-    const statsSection = document.querySelector('.stats');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeSlide(1);
     }
 });
 
-// Add ripple effect styles
-const rippleStyles = document.createElement('style');
-rippleStyles.textContent = `
-            .ripple-effect {
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
-                transform: scale(0);
-                animation: ripple-animation 0.6s linear;
-                pointer-events: none;
-            }
-            
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-document.head.appendChild(rippleStyles);
+// Touch/swipe support for mobile
+let startX = 0;
+let endX = 0;
 
-
-
-
-class TCTestimonialCarousel {
-    constructor() {
-        this.currentSlide = 0;
-        this.totalSlides = 3;
-        this.autoPlayInterval = 5000;
-        this.autoPlayTimer = null;
-        this.progressTimer = null;
-
-        this.track = document.getElementById('tcCarouselTrack');
-        this.navDots = document.querySelectorAll('.tc-nav-dot');
-        this.prevBtn = document.getElementById('tcPrevBtn');
-        this.nextBtn = document.getElementById('tcNextBtn');
-        this.progressBar = document.getElementById('tcProgressBar');
-        this.cards = document.querySelectorAll('.tc-testimonial-card');
-
-        this.init();
-    }
-
-    init() {
-        this.setupEventListeners();
-        this.startAutoPlay();
-        this.startProgressBar();
-    }
-
-    setupEventListeners() {
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
-
-        this.navDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
-        });
-
-        // Pause on hover
-        const section = document.querySelector('.tc-testimonial-section');
-        section.addEventListener('mouseenter', () => this.pauseAutoPlay());
-        section.addEventListener('mouseleave', () => this.resumeAutoPlay());
-
-        // Touch/swipe support
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-
-        this.track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-            this.pauseAutoPlay();
-        });
-
-        this.track.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-        });
-
-        this.track.addEventListener('touchend', () => {
-            if (!isDragging) return;
-            isDragging = false;
-
-            const diff = startX - currentX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    this.nextSlide();
-                } else {
-                    this.prevSlide();
-                }
-            }
-
-            this.resumeAutoPlay();
-        });
-    }
-
-    goToSlide(slideIndex) {
-        this.currentSlide = slideIndex;
-        this.updateCarousel();
-        this.resetAutoPlay();
-    }
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.updateCarousel();
-        this.resetAutoPlay();
-    }
-
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.updateCarousel();
-        this.resetAutoPlay();
-    }
-
-    updateCarousel() {
-        const translateX = -this.currentSlide * 100;
-        this.track.style.transform = `translateX(${translateX}%)`;
-
-        // Update nav dots
-        this.navDots.forEach((dot, index) => {
-            dot.classList.toggle('tc-active', index === this.currentSlide);
-        });
-
-        // Update active card
-        this.cards.forEach((card, index) => {
-            card.classList.toggle('tc-active', index === this.currentSlide);
-        });
-
-        // Reset progress bar
-        this.resetProgressBar();
-    }
-
-    startAutoPlay() {
-        this.autoPlayTimer = setInterval(() => {
-            this.nextSlide();
-        }, this.autoPlayInterval);
-    }
-
-    pauseAutoPlay() {
-        if (this.autoPlayTimer) {
-            clearInterval(this.autoPlayTimer);
-            this.autoPlayTimer = null;
-        }
-        this.pauseProgressBar();
-    }
-
-    resumeAutoPlay() {
-        if (!this.autoPlayTimer) {
-            this.startAutoPlay();
-            this.startProgressBar();
-        }
-    }
-
-    resetAutoPlay() {
-        this.pauseAutoPlay();
-        this.resumeAutoPlay();
-    }
-
-    startProgressBar() {
-        let progress = 0;
-        const increment = 100 / (this.autoPlayInterval / 50);
-
-        this.progressTimer = setInterval(() => {
-            progress += increment;
-            this.progressBar.style.width = `${Math.min(progress, 100)}%`;
-
-            if (progress >= 100) {
-                progress = 0;
-            }
-        }, 50);
-    }
-
-    pauseProgressBar() {
-        if (this.progressTimer) {
-            clearInterval(this.progressTimer);
-            this.progressTimer = null;
-        }
-    }
-
-    resetProgressBar() {
-        this.progressBar.style.width = '0%';
-        this.pauseProgressBar();
-        this.startProgressBar();
-    }
-}
-
-// Initialize carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new TCTestimonialCarousel();
+track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
 });
 
-// Add some dynamic particle generation
-function tcCreateFloatingParticles() {
-    const container = document.querySelector('.tc-floating-particles');
+track.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
 
-    setInterval(() => {
-        if (container.children.length < 10) {
-            const particle = document.createElement('div');
-            particle.className = 'tc-particle';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+function handleSwipe() {
+    const threshold = 50;
+    const diff = startX - endX;
 
-            container.appendChild(particle);
-
-            // Remove particle after animation
-            setTimeout(() => {
-                if (container.contains(particle)) {
-                    container.removeChild(particle);
-                }
-            }, 8000);
-        }
-    }, 2000);
-}
-
-// Start particle generation
-tcCreateFloatingParticles();
-
-
-
-
-
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('.smgym-nav-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#contact') {
-            document.querySelector('.smgym-footer-section').scrollIntoView({
-                behavior: 'smooth'
-            });
+    if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+            changeSlide(1); // Swipe left - next slide
         } else {
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+            changeSlide(-1); // Swipe right - previous slide
         }
-    });
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', function () {
-    const navbar = document.getElementById('smgymNavbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
     }
-});
+}
 
-// Hero button smooth scroll
-document.querySelector('.smgym-hero-button').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector('.smgym-footer-section').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-
-// Animate elements on scroll
+// Smooth scroll animations on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver(function (entries) {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.animation = 'fadeInUp 1s ease-out';
         }
     });
 }, observerOptions);
 
-// Observe footer columns
-document.querySelectorAll('.smgym-footer-column').forEach(column => {
-    column.style.opacity = '0';
-    column.style.transform = 'translateY(30px)';
-    column.style.transition = 'all 0.6s ease';
-    observer.observe(column);
+document.querySelectorAll('.program-card').forEach(card => {
+    observer.observe(card);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-// ==================================== NAVBAR HERO ==================================== 
-
-
-// Start training function
-function startTraining() {
-    // Add click animation
-    const button = document.querySelector('.cta-button-hero');
-    button.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        button.style.transform = '';
-    }, 150);
-
-    // You can add your training logic here
-    alert('Welcome to SM Gym! Your fitness journey begins now! 💪');
-}
-
-// Active nav link highlighting
-document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-});
-
-// Intersection Observer for animations
-const observerOptions1 = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer1 = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe elements for scroll animations
-document.querySelectorAll('.floating-element').forEach(el => {
-    observer.observe(el);
-});
-
-
-
-// ==================================== FEACTURE AND ABOUT  ==================================== 
-
-function learnMore() {
-    alert('Learn more functionality would be implemented here!');
-}
-
-// Intersection Observer for scroll animations
-const observerOptions2 = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer2 = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-        }
-    });
-}, observerOptions);
-
-// Observe all animated elements
-document.querySelectorAll('.feature-card, .about-content, .about-image').forEach(el => {
-    observer.observe(el);
-});
-
-// Enhanced hover effects
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.addEventListener('mouseenter', function () {
-        this.style.transform = 'translateY(-20px) scale(1.05)';
+// Add hover effects and performance optimizations
+const cards = document.querySelectorAll('.program-card');
+cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
     });
 
-    card.addEventListener('mouseleave', function () {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Parallax effect for floating elements
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelectorAll('.floating-element');
-
-    parallax.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
     });
 });

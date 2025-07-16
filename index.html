@@ -70,7 +70,7 @@
         <div class="particles" id="particles"></div>
 
         <!-- Floating Elements -->
-        <div class="floating-element dumbbell-1">
+        <!-- <div class="floating-element dumbbell-1">
             <i class="fas fa-dumbbell"></i>
         </div>
         <div class="floating-element dumbbell-2">
@@ -78,7 +78,7 @@
         </div>
         <div class="floating-element dumbbell-3">
             <i class="fas fa-dumbbell"></i>
-        </div>
+        </div> -->
 
         <div class="container">
             <div class="row justify-content-center">
@@ -241,77 +241,134 @@
     <!-- ==================================== Programs Carousel Section =================================== -->
 
     <section class="programs-section">
-        <div class="container">
-            <div class="header">
-                <h1 class="title">Explore Our Programs</h1>
-                <div class="nav-buttons">
-                    <button class="nav-btn" id="prevBtn">←</button>
-                    <button class="nav-btn" id="nextBtn">→</button>
-                </div>
+        <!-- <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div> -->
+
+        <div class="container pt-5 pb-5">
+            <div class="section-title">
+                <h2>Explore Our Programs</h2>
+                
             </div>
 
-            <div class="carousel-container">
-                <div class="programs-grid" id="programsGrid">
-                    <div class="program-card">
-                        <div class="card-image personal-training"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Personal Training</h2>
-                            <p class="card-description">
-                                Achieve your specific fitness goals with personalized workout plans and dedicated
-                                one-on-one guidance from our certified trainers.
-                            </p>
-                            <ul class="features-list">
-                                <li>Customized workout routines tailored to your needs</li>
-                                <li>Nutritional guidance and lifestyle coaching</li>
-                                <li>Regular progress tracking and adjustments</li>
-                                <li>Motivation and accountability from expert trainers</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+            <div class="programs-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Personal Training Card -->
+                        <div class="program-card">
+                            <div class="card-content">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                                        alt="Personal Training">
+                                </div>
+                                <div class="card-info">
+                                    <h3>Personal Training</h3>
+                                    <p>Achieve your specific fitness goals with personalized workout plans and dedicated
+                                        guidance from our certified trainers.</p>
+                                    <ul class="features-list">
+                                        <li><i class="fas fa-check"></i> Customized workout routines tailored to your
+                                            needs</li>
+                                        <li><i class="fas fa-check"></i> Nutritional guidance and lifestyle coaching
+                                        </li>
+                                        <li><i class="fas fa-check"></i> Regular progress tracking and adjustments</li>
+                                        <li><i class="fas fa-check"></i> Motivation and accountability from expert
+                                            trainers</li>
+                                    </ul>
+                                    <button class="cta-button">Book a Session</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weight Loss Card -->
+                        <div class="program-card">
+                            <div class="card-content">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                                        alt="Weight Loss">
+                                </div>
+                                <div class="card-info">
+                                    <h3>Weight Loss</h3>
+                                    <p>Reach your weight loss goals safely and effectively with science-backed training,
+                                        nutrition plans, and expert support every step of the way.</p>
+                                    <ul class="features-list">
+                                        <li><i class="fas fa-check"></i> Fat-burning workouts designed to maximize
+                                            results</li>
+                                        <li><i class="fas fa-check"></i> Personalized meal plans to support sustainable
+                                            weight loss</li>
+                                        <li><i class="fas fa-check"></i> Regular check-ins to track progress and make
+                                            adjustments</li>
+                                        <li><i class="fas fa-check"></i> Support and motivation to stay consistent and
+                                            on track</li>
+                                    </ul>
+                                    <button class="cta-button">Start Today</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Strength Training Card -->
+                        <div class="program-card">
+                            <div class="card-content">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                                        alt="Personal Training">
+                                </div>
+                                <div class="card-info">
+                                    <h3>Strength Training</h3>
+                                    <p>Build muscle, increase power, and enhance your overall strength with our
+                                        comprehensive strength training programs designed for all fitness levels.</p>
+                                    <ul class="features-list">
+                                        <li><i class="fas fa-check"></i> Progressive strength building workouts</li>
+                                        <li><i class="fas fa-check"></i> Proper form coaching to prevent injuries</li>
+                                        <li><i class="fas fa-check"></i> Muscle-building nutrition strategies</li>
+                                        <li><i class="fas fa-check"></i> Advanced training techniques for maximum gains
+                                        </li>
+                                    </ul>
+                                    <button class="cta-button">Get Stronger</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group Classes Card -->
+                        <div class="program-card">
+                            <div class="card-content">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                                        alt="Group Classes">
+                                </div>
+                                <div class="card-info">
+                                    <h3>Group Classes</h3>
+                                    <p>Join our energetic group classes and experience the power of community fitness
+                                        with HIIT, yoga, spinning, and more dynamic workouts.</p>
+                                    <ul class="features-list">
+                                        <li><i class="fas fa-check"></i> Variety of class types for all fitness levels
+                                        </li>
+                                        <li><i class="fas fa-check"></i> Motivating group environment and community</li>
+                                        <li><i class="fas fa-check"></i> Expert instructors leading every session</li>
+                                        <li><i class="fas fa-check"></i> Flexible scheduling to fit your lifestyle</li>
+                                    </ul>
+                                    <button class="cta-button">Join Classes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image weight-loss"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Weight Loss</h2>
-                            <p class="card-description">
-                                Reach your weight loss goals safely and effectively with science-backed training, meal
-                                plans, and expert support every step of the way.
-                            </p>
-                            <ul class="features-list">
-                                <li>Fat-burning workouts designed to maximize results</li>
-                                <li>Personalized meal plans to support sustainable weight loss</li>
-                                <li>Regular check-ins to track progress and make adjustments</li>
-                                <li>Support and motivation to stay consistent and on track</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
-                        </div>
-                    </div>
+                <div class="carousel-controls prev" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="carousel-controls next" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image strength-training"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Strength Training</h2>
-                            <p class="card-description">
-                                Build lean muscle mass and increase overall strength with progressive resistance
-                                training programs designed for all fitness levels.
-                            </p>
-                            <ul class="features-list">
-                                <li>Progressive overload training for maximum muscle growth</li>
-                                <li>Proper form instruction to prevent injuries</li>
-                                <li>Strength assessments and performance tracking</li>
-                                <li>Equipment training for gym and home workouts</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
-                        </div>
-                    </div>
-
-
-
+                <div class="carousel-indicators">
+                    <div class="indicator active" onclick="goToSlide(0)"></div>
+                    <div class="indicator" onclick="goToSlide(1)"></div>
+                    <div class="indicator" onclick="goToSlide(2)"></div>
+                    <div class="indicator" onclick="goToSlide(3)"></div>
                 </div>
             </div>
-
-            <div class="carousel-indicators" id="indicators"></div>
         </div>
     </section>
 
@@ -923,12 +980,12 @@
                     <a href="#" class="smgym-social-link"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="smgym-social-link"><i class="fab fa-youtube"></i></a>
                 </div>
-                <div class="smgym-map-placeholder mt-4">
+                <!-- <div class="smgym-map-placeholder mt-4">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4493.6524330627635!2d67.1520654!3d24.8184728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33b21d8c58e7d%3A0x491a0c254a1b4557!2sSM%20GYM%20(Korangi%20No.%203)!5e1!3m2!1sen!2s!4v1751441168389!5m2!1sen!2s"
                         style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                </div> -->
             </div>
         </div>
 
