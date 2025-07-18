@@ -47,30 +47,27 @@ textElements.forEach((element, index) => {
 
 
 // ==================================== Card Section ====================================
+   const observerOptions2 = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-const observer1 = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, { threshold: 0.1 });
+        const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions2);
 
-document.querySelectorAll('.credential-card').forEach(card => {
-    observer.observe(card);
-});
+        document.querySelectorAll('.credential-card').forEach(card => {
+            observer2.observe(card);
+        });
 
-// Add mouse move parallax effect
-document.addEventListener('mousemove', (e) => {
-    const cards = document.querySelectorAll('.credential-card');
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-
-    cards.forEach((card, index) => {
-        const intensity = 0.5 + (index * 0.1);
-        const xPos = (x - 0.5) * intensity;
-        const yPos = (y - 0.5) * intensity;
-
-        card.style.transform += ` translate3d(${xPos}px, ${yPos}px, 0)`;
-    });
-});
+        // Add click handlers for certificate buttons
+        document.querySelectorAll('.view-cert-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cardTitle = this.closest('.credential-card').querySelector('.cert-title').textContent;
+                alert(`Opening certificate: ${cardTitle}`);
+            });
+        });

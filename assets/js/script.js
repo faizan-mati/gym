@@ -552,3 +552,200 @@ cards.forEach(card => {
         card.style.transform = 'translateY(0)';
     });
 });
+
+
+
+
+
+
+
+
+// Testimonial Carousel with Progress Line
+class TestimonialCarousel {
+    constructor() {
+        this.track = document.getElementById('tcCarouselTrack');
+        this.progressBar = document.getElementById('tcProgressBar');
+        this.prevBtn = document.getElementById('tcPrevBtn');
+        this.nextBtn = document.getElementById('tcNextBtn');
+        this.navDots = document.querySelectorAll('.tc-nav-dot');
+        this.cards = document.querySelectorAll('.tc-testimonial-card');
+        this.currentIndex = 0;
+        this.totalSlides = this.cards.length;
+        this.slideDuration = 5000; // 5 seconds per slide
+        this.progressInterval = null;
+        this.autoSlideTimeout = null;
+        this.progressWidth = 0;
+        this.isTransitioning = false;
+        this.startTime = 0;
+
+        this.init();
+        this.setupEventListeners();
+        this.startProgressLine();
+    }
+
+    init() {
+        this.updateCarousel();
+        this.resetProgressBar();
+    }
+
+    setupEventListeners() {
+        // Navigation buttons
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+        // Navigation dots
+        this.navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (!this.isTransitioning) {
+                    this.goToSlide(index);
+                }
+            });
+        });
+
+        // Pause progress on hover
+        const section = document.querySelector('.tc-testimonial-section');
+        section.addEventListener('mouseenter', () => this.pauseProgress());
+        section.addEventListener('mouseleave', () => this.resumeProgress());
+    }
+
+    updateCarousel() {
+        this.isTransitioning = true;
+        
+        // Update card positions
+        this.cards.forEach((card, index) => {
+            card.classList.remove('tc-active');
+            if (index === this.currentIndex) {
+                card.classList.add('tc-active');
+            }
+        });
+
+        // Move track
+        const translateX = -this.currentIndex * 100;
+        this.track.style.transform = `translateX(${translateX}%)`;
+
+        // Update navigation dots
+        this.navDots.forEach((dot, index) => {
+            dot.classList.toggle('tc-active', index === this.currentIndex);
+        });
+
+        // Allow transitions after animation completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 500);
+    }
+
+    startProgressLine() {
+        this.resetProgressBar();
+        this.startTime = Date.now();
+        
+        // Use requestAnimationFrame for smooth animation
+        const animate = () => {
+            const elapsed = Date.now() - this.startTime;
+            this.progressWidth = (elapsed / this.slideDuration) * 100;
+            
+            // Smooth progress bar update
+            this.progressBar.style.width = `${Math.min(this.progressWidth, 100)}%`;
+            
+            // When progress reaches 100%, move to next slide
+            if (this.progressWidth >= 100) {
+                this.nextSlide();
+                return;
+            }
+            
+            // Continue animation
+            this.progressInterval = requestAnimationFrame(animate);
+        };
+        
+        this.progressInterval = requestAnimationFrame(animate);
+    }
+
+    resetProgressBar() {
+        this.progressWidth = 0;
+        this.progressBar.style.width = '0%';
+        if (this.progressInterval) {
+            cancelAnimationFrame(this.progressInterval);
+        }
+    }
+
+    pauseProgress() {
+        if (this.progressInterval) {
+            cancelAnimationFrame(this.progressInterval);
+        }
+    }
+
+    resumeProgress() {
+        // Continue from where we left off
+        this.startTime = Date.now() - (this.progressWidth / 100) * this.slideDuration;
+        
+        const animate = () => {
+            const elapsed = Date.now() - this.startTime;
+            this.progressWidth = (elapsed / this.slideDuration) * 100;
+            
+            this.progressBar.style.width = `${Math.min(this.progressWidth, 100)}%`;
+            
+            if (this.progressWidth >= 100) {
+                this.nextSlide();
+                return;
+            }
+            
+            this.progressInterval = requestAnimationFrame(animate);
+        };
+        
+        this.progressInterval = requestAnimationFrame(animate);
+    }
+
+    nextSlide() {
+        this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+        this.updateCarousel();
+        this.startProgressLine(); // Restart progress line
+    }
+
+    prevSlide() {
+        this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+        this.updateCarousel();
+        this.startProgressLine(); // Restart progress line
+    }
+
+    goToSlide(index) {
+        if (index === this.currentIndex) return;
+        
+        this.currentIndex = index;
+        this.updateCarousel();
+        this.startProgressLine(); // Restart progress line
+    }
+}
+
+// Initialize testimonial carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialCarousel = new TestimonialCarousel();
+});
+
+// Add CSS for smooth transitions
+const testimonialStyle = document.createElement('style');
+testimonialStyle.textContent = `
+    .tc-carousel-track {
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .tc-testimonial-card {
+        transition: all 0.3s ease;
+        opacity: 0.7;
+    }
+    
+    .tc-testimonial-card.tc-active {
+        opacity: 1;
+    }
+    
+    .tc-progress-bar {
+        transition: none !important;
+        background: linear-gradient(90deg, #ff6b35, #f7931e);
+        height: 4px;
+        border-radius: 2px;
+    }
+    
+    .tc-carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(testimonialStyle);

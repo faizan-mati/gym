@@ -66,39 +66,6 @@
     }
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 5rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-.section-title h2 {
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 900;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-.section-title h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: var(--primary-gradient);
-    border-radius: 2px;
-    animation: expandLine 2s ease-out infinite;
-}
-
 @keyframes expandLine {
 
     0%,
@@ -390,6 +357,9 @@
     right: 0;
     bottom: 0;
     background: url('../images/IMG-005.jpg');
+    background-size: cover; /* Ensures full container is covered */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating */
     animation: particleMove 15s linear infinite;
 }
 
@@ -924,38 +894,6 @@
     pointer-events: none;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 80px;
-    position: relative;
-    z-index: 2;
-}
-
-.section-title h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 20px;
-    position: relative;
-    animation: fadeInUp 1s ease-out;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: var(--primary-gradient);
-    border-radius: 2px;
-    animation: scaleX 1s ease-out 0.5s both;
-}
-
 .section-subtitle {
     font-size: 1.2rem;
     color: var(--text-muted);
@@ -1266,9 +1204,6 @@
 }
 
 @media (max-width: 768px) {
-    .section-title h2 {
-        font-size: 2.5rem;
-    }
 
     .card-content {
         flex-direction: column;
@@ -1302,10 +1237,6 @@
 @media (max-width: 480px) {
     .programs-section {
         padding: 60px 0;
-    }
-
-    .section-title h2 {
-        font-size: 2rem;
     }
 
     .card-content {
@@ -1913,7 +1844,7 @@
     position: relative;
 }
 
-.tc-testimonial-text::before,
+/* .tc-testimonial-text::before,
 .tc-testimonial-text::after {
     content: '"';
     font-size: 4rem;
@@ -1931,7 +1862,7 @@
 .tc-testimonial-text::after {
     bottom: -60px;
     right: -10px;
-}
+} */
 
 .tc-author-info {
     display: flex;
