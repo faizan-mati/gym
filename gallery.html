@@ -20,9 +20,10 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="./index.html">
+           <a class="navbar-brand" href="./index.html">
                 <img src="./assets/images/Logo.png" alt="SMGYM Logo" style="height: 60px; vertical-align: middle;">
-            </a>class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -103,39 +104,124 @@
 
     <!-- ====================================  Gallery Section ====================================  -->
 
-    <section class="gallery-section">
+     <section class="gallery-section">
         <div class="container">
+            <!-- <div class="section-title">
+                <h2>Our Gym Gallery</h2>
+                <p>Take a look at our state-of-the-art facilities, modern equipment, and vibrant community in action</p>
+            </div> -->
 
+            <div class="row gallery-container">
+                <!-- Gallery Item 1 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Gym Equipment" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="gallery-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="equipment">Equipment</button>
-                <button class="filter-btn" data-filter="classes">Classes</button>
-                <button class="filter-btn" data-filter="facilities">Facilities</button>
-                <button class="filter-btn" data-filter="members">Members</button>
-            </div>
+                <!-- Gallery Item 2 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cardio Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be populated by JavaScript -->
+                <!-- Gallery Item 3 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Free Weights Section" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group Training Classes" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Functional Training Zone" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yoga and Stretching Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Personal Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="7">
+                        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Locker Room Facilities" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="8">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boxing Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal for detailed view -->
-    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="galleryModalLabel">Gallery Item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <!-- Modal content will be populated by JavaScript -->
-                </div>
-            </div>
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 9</div>
         </div>
     </div>
-
+ 
     <!-- ==================================== Footer Section 1 =================================== -->
 
     <section class="smgym-hero-section" id="home">

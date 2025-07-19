@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Programs Section</title>
+    <title>Gym Gallery Section</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-orange: #ff6b35;
-            --secondary-orange: #ff8c5a;
-            --dark-bg: #1a1a1a;
-            --card-bg: rgba(26, 26, 26, 0.9);
+            --secondary-orange: #ff8c42;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #1a1a1a;
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
             --text-muted: #b0b0b0;
-            --glow-orange: rgba(255, 107, 53, 0.6);
-            --primary-gradient: linear-gradient(135deg, #ff6b35, #ff8c5a);
+            --accent-gray: #2a2a2a;
+            --primary-gradient: linear-gradient(135deg, #ff6b35, #ff8c42);
+            --card-gradient: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+            --success-green: #10b981;
+            --error-red: #ef4444;
         }
 
         * {
@@ -22,369 +30,266 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: var(--dark-bg);
-            color: white;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: var(--text-light);
             overflow-x: hidden;
-        }
-
-        .programs-section {
-            padding: 80px 20px;
-            background-color: var(--dark-bg);
-            position: relative;
+            scroll-behavior: smooth;
             min-height: 100vh;
         }
 
-        .programs-section::before {
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-orange);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-orange);
+        }
+
+        /* Gallery Section Styles */
+        .gallery-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 30%, var(--glow-orange) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, var(--glow-orange) 0%, transparent 50%);
-            opacity: 0.1;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 140, 66, 0.1) 0%, transparent 50%);
             pointer-events: none;
-            animation: backgroundPulse 8s ease-in-out infinite;
         }
 
-        @keyframes backgroundPulse {
-            0%, 100% {
-                opacity: 0.1;
-            }
-            50% {
-                opacity: 0.2;
-            }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease-out forwards;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
         }
 
-        .title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+        .section-title h2 {
+            font-size: 3.5rem;
             font-weight: 700;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px var(--glow-orange);
+            margin-bottom: 20px;
             position: relative;
         }
 
-        .title::after {
+        .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 0%;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
             background: var(--primary-gradient);
             border-radius: 2px;
-            animation: titleUnderline 2s ease-out 1s forwards;
         }
 
-        @keyframes titleUnderline {
-            to {
-                width: 100%;
-            }
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-orange);
-            background: transparent;
-            color: var(--primary-orange);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+        /* Gallery Grid */
+        .gallery-container {
             position: relative;
-            overflow: hidden;
-            font-size: 20px;
-            font-weight: bold;
         }
 
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .gallery-item {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--card-gradient);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 250px;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.3);
+        }
+
+        .gallery-card img {
             width: 100%;
             height: 100%;
-            background: var(--primary-gradient);
-            transition: left 0.3s ease;
-            z-index: -1;
+            object-fit: cover;
+            transition: all 0.4s ease;
         }
 
-        .nav-btn:hover::before {
-            left: 0;
-        }
-
-        .nav-btn:hover {
-            color: white;
-            box-shadow: 0 0 25px var(--glow-orange);
+        .gallery-card:hover img {
             transform: scale(1.1);
         }
 
-        .nav-btn:active {
-            transform: scale(0.95);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            margin-top: 40px;
-        }
-
-        .programs-grid {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            gap: 40px;
-        }
-
-        .program-card {
-            background: var(--card-bg);
-            border-radius: 25px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            backdrop-filter: blur(15px);
-            width: 100%;
-            max-width: 650px;
-            min-width: 300px;
-            flex-shrink: 0;
-        }
-
-        .program-card::before {
-            content: '';
+        .gallery-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--primary-gradient);
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.9), rgba(255, 140, 66, 0.9));
             opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .program-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 40px var(--glow-orange);
-            border-color: var(--primary-orange);
-        }
-
-        .program-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .card-image {
-            height: 350px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--glow-orange), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .program-card:hover .card-image::after {
-            opacity: 0.4;
-        }
-
-        .personal-training {
-            background: linear-gradient(135deg, #ff6b35, #ff8c5a);
-        }
-
-        .weight-loss {
-            background: linear-gradient(135deg, #28a745, #20c997);
-        }
-
-        .strength-training {
-            background: linear-gradient(135deg, #dc3545, #fd7e14);
-        }
-
-        .cardio-fitness {
-            background: linear-gradient(135deg, #007bff, #6f42c1);
-        }
-
-        .nutrition-coaching {
-            background: linear-gradient(135deg, #ffc107, #fd7e14);
-        }
-
-        .card-content {
-            padding: 35px;
-        }
-
-        .card-title {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
-            margin-bottom: 18px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .card-description {
-            color: var(--text-muted);
-            margin-bottom: 28px;
-            line-height: 1.7;
-            font-size: clamp(0.9rem, 2vw, 1.05rem);
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 35px;
-        }
-
-        .features-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            color: var(--text-muted);
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: slideInLeft 0.6s ease-out forwards;
-            font-size: clamp(0.85rem, 2vw, 1rem);
-        }
-
-        .features-list li:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .features-list li:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .features-list li:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .features-list li:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .features-list li::before {
-            content: '✓';
-            color: white;
-            font-weight: bold;
-            margin-right: 18px;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
+            transition: all 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px var(--glow-orange);
         }
 
-        .book-btn {
-            background: var(--primary-gradient);
-            border: none;
-            padding: 18px 35px;
-            border-radius: 50px;
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-icon {
+            font-size: 2.5rem;
             color: white;
-            font-weight: 600;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-card:hover .gallery-icon {
+            transform: scale(1);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            letter-spacing: 0.5px;
-            width: 100%;
-            text-transform: uppercase;
         }
 
-        .book-btn::before {
-            content: '';
+        .lightbox-close:hover {
+            background: var(--secondary-orange);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%);
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            transition: all 0.3s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .book-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .book-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.5);
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 107, 53, 0.3);
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            opacity: 0.8;
         }
 
-        .indicator.active {
-            background: var(--primary-orange);
-            transform: scale(1.3);
-            box-shadow: 0 0 15px var(--glow-orange);
+        .lightbox-nav:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
         }
 
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent-gray);
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -396,545 +301,315 @@
             }
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 0 10px var(--glow-orange);
-            }
-            50% {
-                box-shadow: 0 0 25px var(--glow-orange);
-            }
-        }
-
-        .program-card:hover .card-title {
-            animation: pulseGlow 2s infinite;
-        }
-
-        /* Enhanced Mobile Responsiveness */
-        @media (max-width: 1200px) {
-            .program-card {
-                min-width: 350px;
-                max-width: 400px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .programs-section {
-                padding: 70px 15px;
-            }
-
-            .program-card {
-                min-width: 320px;
-                max-width: 380px;
-            }
-
-            .programs-grid {
-                gap: 30px;
-            }
-
-            .header {
-                margin-bottom: 50px;
-            }
-
-            .nav-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 18px;
-            }
-
-            .card-image {
-                height: 300px;
-            }
-
-            .card-content {
-                padding: 30px;
-            }
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .programs-section {
-                padding: 60px 15px;
+            .section-title h2 {
+                font-size: 2.5rem;
             }
-
-            .program-card {
-                min-width: 280px;
-                max-width: 320px;
-            }
-
-            .programs-grid {
-                gap: 25px;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 25px;
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            .nav-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 16px;
-            }
-
-            .nav-buttons {
-                gap: 12px;
-            }
-
-            .card-image {
-                height: 250px;
-            }
-
-            .card-content {
-                padding: 25px;
-            }
-
-            .features-list li {
-                margin-bottom: 12px;
-            }
-
-            .features-list li::before {
-                width: 20px;
-                height: 20px;
-                font-size: 12px;
-                margin-right: 15px;
-            }
-
-            .book-btn {
-                padding: 15px 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .programs-section {
-                padding: 50px 10px;
-            }
-
-            .program-card {
-                min-width: 260px;
-                max-width: 280px;
-            }
-
-            .programs-grid {
-                gap: 20px;
-            }
-
-            .header {
-                margin-bottom: 30px;
-            }
-
-            .nav-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 14px;
-            }
-
-            .nav-buttons {
-                gap: 8px;
-            }
-
-            .card-image {
+            
+            .gallery-card {
                 height: 200px;
             }
-
-            .card-content {
-                padding: 20px;
+            
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
             }
-
-            .features-list {
-                margin-bottom: 25px;
+            
+            .lightbox-prev {
+                left: -60px;
             }
-
-            .features-list li {
-                margin-bottom: 10px;
-            }
-
-            .features-list li::before {
-                width: 18px;
-                height: 18px;
-                font-size: 10px;
-                margin-right: 12px;
-            }
-
-            .book-btn {
-                padding: 12px 25px;
-            }
-
-            .carousel-indicators {
-                gap: 8px;
-                margin-top: 30px;
-            }
-
-            .indicator {
-                width: 10px;
-                height: 10px;
+            
+            .lightbox-next {
+                right: -60px;
             }
         }
 
-        @media (max-width: 320px) {
-            .program-card {
-                min-width: 240px;
-                max-width: 260px;
+        @media (max-width: 576px) {
+            .gallery-section {
+                padding: 60px 0;
             }
-
-            .card-content {
-                padding: 18px;
+            
+            .section-title {
+                margin-bottom: 50px;
             }
-
-            .features-list li::before {
-                width: 16px;
-                height: 16px;
-                font-size: 9px;
-                margin-right: 10px;
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
-
-            .book-btn {
-                padding: 10px 20px;
-            }
-        }
-
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .program-card:hover {
-                transform: none;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .nav-btn:hover {
-                transform: none;
-                box-shadow: 0 0 15px var(--glow-orange);
-            }
-
-            .book-btn:hover {
-                transform: none;
-                box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-            }
-        }
-
-        /* Landscape orientation for tablets */
-        @media (max-width: 1024px) and (orientation: landscape) {
-            .programs-section {
-                padding: 40px 20px;
-            }
-
-            .header {
-                margin-bottom: 30px;
-            }
-
-            .card-image {
-                height: 220px;
-            }
-
-            .card-content {
-                padding: 25px;
-            }
-        }
-
-        /* Very small screens */
-        @media (max-width: 280px) {
-            .program-card {
-                min-width: 220px;
-                max-width: 240px;
-            }
-
-            .card-content {
-                padding: 15px;
-            }
-
-            .card-image {
+            
+            .gallery-card {
                 height: 180px;
+            }
+            
+            .lightbox-prev {
+                left: -50px;
+            }
+            
+            .lightbox-next {
+                right: -50px;
             }
         }
     </style>
 </head>
 <body>
-    <section class="programs-section">
+    <!-- Gallery Section -->
+    <section class="gallery-section">
         <div class="container">
-            <div class="header">
-                <h1 class="title">Explore Our Programs</h1>
-                <div class="nav-buttons">
-                    <button class="nav-btn" id="prevBtn">←</button>
-                    <button class="nav-btn" id="nextBtn">→</button>
-                </div>
+            <div class="section-title">
+                <h2>Our Gym Gallery</h2>
+                <p>Take a look at our state-of-the-art facilities, modern equipment, and vibrant community in action</p>
             </div>
 
-            <div class="carousel-container">
-                <div class="programs-grid" id="programsGrid">
-                    <div class="program-card">
-                        <div class="card-image personal-training"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Personal Training</h2>
-                            <p class="card-description">
-                                Achieve your specific fitness goals with personalized workout plans and dedicated
-                                one-on-one guidance from our certified trainers.
-                            </p>
-                            <ul class="features-list">
-                                <li>Customized workout routines tailored to your needs</li>
-                                <li>Nutritional guidance and lifestyle coaching</li>
-                                <li>Regular progress tracking and adjustments</li>
-                                <li>Motivation and accountability from expert trainers</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+            <div class="row gallery-container">
+                <!-- Gallery Item 1 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Gym Equipment" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
                     </div>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image weight-loss"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Weight Loss</h2>
-                            <p class="card-description">
-                                Reach your weight loss goals safely and effectively with science-backed training, meal
-                                plans, and expert support every step of the way.
-                            </p>
-                            <ul class="features-list">
-                                <li>Fat-burning workouts designed to maximize results</li>
-                                <li>Personalized meal plans to support sustainable weight loss</li>
-                                <li>Regular check-ins to track progress and make adjustments</li>
-                                <li>Support and motivation to stay consistent and on track</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+                <!-- Gallery Item 2 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cardio Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
                     </div>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image strength-training"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Strength Training</h2>
-                            <p class="card-description">
-                                Build lean muscle mass and increase overall strength with progressive resistance
-                                training programs designed for all fitness levels.
-                            </p>
-                            <ul class="features-list">
-                                <li>Progressive overload training for maximum muscle growth</li>
-                                <li>Proper form instruction to prevent injuries</li>
-                                <li>Strength assessments and performance tracking</li>
-                                <li>Equipment training for gym and home workouts</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+                <!-- Gallery Item 3 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Free Weights Section" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
                     </div>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image cardio-fitness"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Cardio Fitness</h2>
-                            <p class="card-description">
-                                Improve cardiovascular health and endurance through dynamic, engaging cardio workouts
-                                that keep you motivated and energized.
-                            </p>
-                            <ul class="features-list">
-                                <li>High-intensity interval training (HIIT) sessions</li>
-                                <li>Low-impact options for joint-friendly workouts</li>
-                                <li>Heart rate monitoring and fitness assessments</li>
-                                <li>Fun, varied routines to prevent workout boredom</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+                <!-- Gallery Item 4 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group Training Classes" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
                     </div>
+                </div>
 
-                    <div class="program-card">
-                        <div class="card-image nutrition-coaching"></div>
-                        <div class="card-content">
-                            <h2 class="card-title">Nutrition Coaching</h2>
-                            <p class="card-description">
-                                Transform your relationship with food through personalized nutrition coaching that fits
-                                your lifestyle and supports your fitness goals.
-                            </p>
-                            <ul class="features-list">
-                                <li>Personalized meal planning and recipe suggestions</li>
-                                <li>Macro and micronutrient education</li>
-                                <li>Sustainable eating habits and lifestyle changes</li>
-                                <li>Support for special dietary needs and preferences</li>
-                            </ul>
-                            <button class="book-btn">Book a Session</button>
+                <!-- Gallery Item 5 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Functional Training Zone" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yoga and Stretching Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Personal Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="7">
+                        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Locker Room Facilities" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="col-lg-4 col-md-6 gallery-item">
+                    <div class="gallery-card" data-index="8">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boxing Training Area" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus gallery-icon"></i>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="carousel-indicators" id="indicators"></div>
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 9</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        class ProgramsCarousel {
+        class GalleryLightbox {
             constructor() {
+                this.galleryItems = document.querySelectorAll('.gallery-card');
+                this.lightbox = document.getElementById('lightbox');
+                this.lightboxImg = document.getElementById('lightbox-img');
+                this.lightboxClose = document.getElementById('lightbox-close');
+                this.lightboxPrev = document.getElementById('lightbox-prev');
+                this.lightboxNext = document.getElementById('lightbox-next');
+                this.lightboxCounter = document.getElementById('lightbox-counter');
                 this.currentIndex = 0;
-                this.totalCards = 5;
-                this.itemsPerView = this.getItemsPerView();
-                this.maxIndex = Math.max(0, this.totalCards - this.itemsPerView);
-                
-                this.grid = document.getElementById('programsGrid');
-                this.prevBtn = document.getElementById('prevBtn');
-                this.nextBtn = document.getElementById('nextBtn');
-                this.indicatorsContainer = document.getElementById('indicators');
+                this.images = [];
                 
                 this.init();
-                this.setupEventListeners();
-                this.setupResizeListener();
-            }
-            
-            getItemsPerView() {
-                const width = window.innerWidth;
-                if (width <= 480) return 1;
-                if (width <= 768) return 1;
-                if (width <= 1024) return 2;
-                return 3;
             }
             
             init() {
-                this.createIndicators();
-                this.updateView();
-                this.updateButtons();
-            }
-            
-            createIndicators() {
-                this.indicatorsContainer.innerHTML = '';
-                const totalIndicators = this.maxIndex + 1;
-                
-                for (let i = 0; i < totalIndicators; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.classList.add('indicator');
-                    if (i === 0) indicator.classList.add('active');
-                    indicator.addEventListener('click', () => this.goToSlide(i));
-                    this.indicatorsContainer.appendChild(indicator);
-                }
-            }
-            
-            updateView() {
-                const cardWidth = this.getCardWidth();
-                const gap = this.getGap();
-                const translateX = -(this.currentIndex * (cardWidth + gap));
-                this.grid.style.transform = `translateX(${translateX}px)`;
-                
-                this.updateIndicators();
-            }
-            
-            getCardWidth() {
-                const width = window.innerWidth;
-                if (width <= 320) return 240;
-                if (width <= 480) return 260;
-                if (width <= 768) return 280;
-                if (width <= 1024) return 320;
-                return 400;
-            }
-            
-            getGap() {
-                const width = window.innerWidth;
-                if (width <= 480) return 20;
-                if (width <= 768) return 25;
-                if (width <= 1024) return 30;
-                return 40;
-            }
-            
-            updateIndicators() {
-                const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === this.currentIndex);
-                });
-            }
-            
-            updateButtons() {
-                this.prevBtn.disabled = this.currentIndex === 0;
-                this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
-            }
-            
-            goToSlide(index) {
-                this.currentIndex = Math.max(0, Math.min(index, this.maxIndex));
-                this.updateView();
-                this.updateButtons();
-            }
-            
-            next() {
-                if (this.currentIndex < this.maxIndex) {
-                    this.currentIndex++;
-                    this.updateView();
-                    this.updateButtons();
-                }
-            }
-            
-            prev() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                    this.updateView();
-                    this.updateButtons();
-                }
-            }
-            
-            setupEventListeners() {
-                this.nextBtn.addEventListener('click', () => this.next());
-                this.prevBtn.addEventListener('click', () => this.prev());
-                
-                // Touch/swipe support
-                let startX = 0;
-                let currentX = 0;
-                let isDragging = false;
-                
-                this.grid.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                });
-                
-                this.grid.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    currentX = e.touches[0].clientX;
-                    e.preventDefault();
-                });
-                
-                this.grid.addEventListener('touchend', () => {
-                    if (!isDragging) return;
-                    isDragging = false;
+                // Collect all images
+                this.galleryItems.forEach((item, index) => {
+                    const img = item.querySelector('img');
+                    this.images.push({
+                        src: img.src,
+                        alt: img.alt
+                    });
                     
-                    const diff = startX - currentX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) {
-                            this.next();
-                        } else {
-                            this.prev();
-                        }
+                    // Add click event to each gallery item
+                    item.addEventListener('click', () => {
+                        this.openLightbox(index);
+                    });
+                });
+                
+                // Add event listeners
+                this.lightboxClose.addEventListener('click', () => this.closeLightbox());
+                this.lightboxPrev.addEventListener('click', () => this.prevImage());
+                this.lightboxNext.addEventListener('click', () => this.nextImage());
+                
+                // Close on background click
+                this.lightbox.addEventListener('click', (e) => {
+                    if (e.target === this.lightbox) {
+                        this.closeLightbox();
                     }
                 });
                 
                 // Keyboard navigation
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') this.prev();
-                    if (e.key === 'ArrowRight') this.next();
+                    if (this.lightbox.classList.contains('active')) {
+                        switch(e.key) {
+                            case 'Escape':
+                                this.closeLightbox();
+                                break;
+                            case 'ArrowLeft':
+                                this.prevImage();
+                                break;
+                            case 'ArrowRight':
+                                this.nextImage();
+                                break;
+                        }
+                    }
                 });
             }
             
-            setupResizeListener() {
-                let resizeTimer;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        const newItemsPerView = this.getItemsPerView();
-                        if (newItemsPerView !== this.itemsPerView) {
-                            this.itemsPerView = newItemsPerView;
-                            this.maxIndex = Math.max(0, this.totalCards - this.itemsPerView);
-                            this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
-                            this.createIndicators();
-                        }
-                        this.updateView();
-                        this.updateButtons();
-                    }, 250);
-                });
+            openLightbox(index) {
+                this.currentIndex = index;
+                this.updateLightboxContent();
+                this.lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            closeLightbox() {
+                this.lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            nextImage() {
+                this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                this.updateLightboxContent();
+            }
+            
+            prevImage() {
+                this.currentIndex = this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+                this.updateLightboxContent();
+            }
+            
+            updateLightboxContent() {
+                const currentImage = this.images[this.currentIndex];
+                this.lightboxImg.src = currentImage.src;
+                this.lightboxImg.alt = currentImage.alt;
+                this.lightboxCounter.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
+                
+                // Add loading animation
+                this.lightboxImg.style.opacity = '0';
+                this.lightboxImg.onload = () => {
+                    this.lightboxImg.style.opacity = '1';
+                };
             }
         }
         
-        // Initialize carousel when DOM is loaded
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Initialize lightbox when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new ProgramsCarousel();
+            new GalleryLightbox();
+        });
+        
+        // Add some interactive effects
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animationName = 'pulse';
+                this.style.animationDuration = '2s';
+                this.style.animationIterationCount = 'infinite';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.animationName = '';
+            });
         });
     </script>
 </body>
