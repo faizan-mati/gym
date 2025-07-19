@@ -1111,3 +1111,16 @@
         font-size: 2rem;
     }
 }
+
+
+@keyframes expandLine {
+
+    0%,
+    100% {
+        width: 100px;
+    }
+
+    50% {
+        width: 200px;
+    }
+}

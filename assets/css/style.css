@@ -215,7 +215,8 @@
 /* About Section */
 .about-section {
     padding: 8rem 0;
-    background: transparent;
+    background: var(--darker-bg); 
+    /* background: transparent; */
     position: relative;
     overflow: hidden;
 }
@@ -357,9 +358,9 @@
     right: 0;
     bottom: 0;
     background: url('../images/IMG-005.jpg');
-    background-size: cover; /* Ensures full container is covered */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents repeating */
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat; 
     animation: particleMove 15s linear infinite;
 }
 
